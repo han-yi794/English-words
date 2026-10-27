@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>高中英语必修一单词录音</title>
+  <style>
+    :root {
+      --ink: #18212b;
+      --muted: #687585;
+      --paper: #f7f4ee;
+      --blue: #1769aa;
+      --blue-dark: #0d4778;
+      --coral: #ef765d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 28px;
+      color: var(--ink);
+      font-family: Georgia, "Microsoft YaHei", serif;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(239,118,93,.22), transparent 28%),
+        radial-gradient(circle at 86% 78%, rgba(23,105,170,.18), transparent 31%),
+        var(--paper);
+    }
+    .panel {
+      width: min(860px, 100%);
+      overflow: hidden;
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(24,33,43,.12);
+      box-shadow: 0 24px 70px rgba(24,33,43,.14);
+    }
+    .topline { height: 9px; background: linear-gradient(90deg, var(--blue), var(--coral)); }
+    .content { padding: clamp(30px, 7vw, 76px); }
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--blue);
+      font: 700 13px/1.2 "Microsoft YaHei", sans-serif;
+      letter-spacing: .16em;
+    }
+    h1 {
+      max-width: 650px;
+      margin: 0;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: .98;
+      letter-spacing: .01em;
+    }
+    .rule { width: 88px; height: 4px; margin: 30px 0 24px; background: var(--coral); }
+    .description {
+      max-width: 570px;
+      margin: 0;
+      color: var(--muted);
+      font: 17px/1.8 "Microsoft YaHei", sans-serif;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+    .picker { margin-top: 30px; }
+    .picker label { display: block; margin-bottom: 9px; color: var(--muted); font: 700 13px "Microsoft YaHei", sans-serif; }
+    .picker select { width: min(560px, 100%); min-height: 48px; padding: 0 14px; color: var(--ink); border: 1px solid rgba(23,105,170,.3); background: white; font: 15px "Microsoft YaHei", sans-serif; }
+    a, button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      text-decoration: none;
+      font: 700 15px "Microsoft YaHei", sans-serif;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .primary { color: white; background: var(--blue); box-shadow: 0 9px 20px rgba(23,105,170,.22); }
+    .secondary { color: var(--blue-dark); border: 1px solid rgba(23,105,170,.3); }
+    button { border: 0; }
+    a:hover, button:hover { transform: translateY(-2px); }
+    .primary:hover { background: var(--blue-dark); box-shadow: 0 12px 25px rgba(23,105,170,.3); }
+    .random { color: var(--ink); background: #f2c94c; box-shadow: 0 9px 20px rgba(190,145,23,.2); }
+    .random:hover { background: #e8bb32; }
+    .result { min-height: 22px; margin: 15px 0 0; color: var(--blue-dark); font: 14px/1.6 "Microsoft YaHei", sans-serif; }
+    .meta { margin-top: 38px; color: #89929b; font: 12px/1.6 "Microsoft YaHei", sans-serif; }
+    @media (max-width: 500px) {
+      body { padding: 14px; }
+      .content { padding: 34px 25px 30px; }
+      .actions a { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="panel">
+    <div class="topline"></div>
+    <section class="content">
+      <p class="eyebrow">ENGLISH · 必修一</p>
+      <h1>高中英语必修一<br>单词录音</h1>
+      <div class="rule"></div>
+      <p class="description">新人教版单词朗读视频。打开后即可开始跟读、复习和巩固重点词汇。</p>
+      <div class="picker">
+        <label for="wordVideoSelect">选择读单词视频</label>
+        <select id="wordVideoSelect" aria-label="选择读单词视频"></select>
+      </div>
+      <div class="actions">
+        <a class="primary" href="https://www.bilibili.com/video/BV1Ns4y1R7f2/" target="_blank" rel="noopener">立即观看视频 ↗</a>
+        <a class="secondary" href="https://www.bilibili.com/video/BV1Ns4y1R7f2/" target="_blank" rel="noopener">在浏览器中打开</a>
+        <button class="secondary" id="playSelected" type="button">播放所选视频 ↗</button>
+        <button class="random" id="randomUnit" type="button">随机播放一个单元 ↗</button>
+      </div>
+      <p class="result" id="randomResult" aria-live="polite"></p>
+      <p class="meta">哔哩哔哩 · BV1Ns4y1R7f2</p>
+    </section>
+  </main>
+  <script>
+    const randomUnit = document.querySelector("#randomUnit");
+    const playSelected = document.querySelector("#playSelected");
+    const wordVideoSelect = document.querySelector("#wordVideoSelect");
+    const randomResult = document.querySelector("#randomResult");
+    const books = [
+      { name: "必修一", bvid: "BV1Ns4y1R7f2", units: 6 },
+      { name: "必修二", bvid: "BV19Y411D7Zi", units: 5 },
+      { name: "必修三", bvid: "BV1Wd4y1L7YX", units: 5 },
+      { name: "选择性必修一", bvid: "BV1Cm4y1m7zT", units: 5 },
+      { name: "选择性必修二", bvid: "BV1pA411R7Fk", units: 5 },
+      { name: "选择性必修三", bvid: "BV1Fo4y1x7fZ", units: 5 },
+      { name: "选择性必修四", bvid: "BV1bW4y1379F", units: 5 }
+    ];
+
+    const wordVideos = books.flatMap((book) => Array.from({ length: book.units }, (_, index) => ({
+      name: `${book.name} Unit${index + 1}`,
+      bvid: book.bvid,
+      part: index + 1
+    })));
+
+    wordVideos.forEach((video, index) => {
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = `${String(index + 1).padStart(2, "0")} · ${video.name}`;
+      wordVideoSelect.appendChild(option);
+    });
+
+    function openWordVideo(video) {
+      const targetUrl = `https://www.bilibili.com/video/${video.bvid}/?p=${video.part}`;
+      randomResult.textContent = `正在打开${video.name}...`;
+      const videoLink = document.createElement("a");
+      videoLink.href = targetUrl;
+      videoLink.target = "_blank";
+      videoLink.rel = "noopener";
+      videoLink.click();
+      window.setTimeout(() => {
+        if (!document.hidden) {
+          window.location.assign(targetUrl);
+        }
+      }, 150);
+    }
+
+    playSelected.addEventListener("click", () => {
+      openWordVideo(wordVideos[Number(wordVideoSelect.value)]);
+    });
+
+    randomUnit.addEventListener("click", () => {
+      const randomIndex = Math.floor(Math.random() * wordVideos.length);
+      wordVideoSelect.value = String(randomIndex);
+      openWordVideo(wordVideos[randomIndex]);
+    });
+  </script>
+</body>
+</html>
