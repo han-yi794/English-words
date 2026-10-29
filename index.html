@@ -583,9 +583,34 @@
     });
   });
 
+  // Land where the chosen book's list is fully readable: scroll past the section top
+  // just enough to fit the whole panel, but never push its title off the screen.
+  var openBook = function(id){
+    var panel = document.getElementById('panel-' + id.replace('book-', ''));
+    var tabs = document.querySelector('.tabs');
+    if (!panel || !tabs) return;
+    var y = window.pageYOffset;
+    var margin = 24;
+    var room = document.documentElement.clientHeight - margin;
+    var indexTop = index.getBoundingClientRect().top + y;
+    var box = panel.getBoundingClientRect();
+    var panelTop = box.top + y;
+    var panelBottom = box.bottom + y;
+    var target = indexTop;
+    if (panelBottom - indexTop > room) {
+      // The heading would have to be cut to fit the list; lift the tabs to the top instead,
+      // and fall back to the book title when even that cannot hold the whole list.
+      var tabsTop = tabs.getBoundingClientRect().top + y - margin;
+      target = panelBottom - tabsTop <= room ? tabsTop : panelTop - margin;
+    }
+    window.scrollTo({ top: Math.round(Math.max(0, target)), behavior: reduce ? 'auto' : 'smooth' });
+  };
+
   document.querySelectorAll('.shelf label').forEach(function(label){
     label.addEventListener('click', function(){
-      index.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      var id = label.getAttribute('for');
+      // the radio flips after the click event, so measure on the next task
+      window.setTimeout(function(){ openBook(id); }, 0);
     });
   });
 
