@@ -1,166 +1,642 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="no-js">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>高中英语必修一单词录音</title>
-  <style>
-    :root {
-      --ink: #18212b;
-      --muted: #687585;
-      --paper: #f7f4ee;
-      --blue: #1769aa;
-      --blue-dark: #0d4778;
-      --coral: #ef765d;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      color: var(--ink);
-      font-family: Georgia, "Microsoft YaHei", serif;
-      background:
-        radial-gradient(circle at 14% 18%, rgba(239,118,93,.22), transparent 28%),
-        radial-gradient(circle at 86% 78%, rgba(23,105,170,.18), transparent 31%),
-        var(--paper);
-    }
-    .panel {
-      width: min(860px, 100%);
-      overflow: hidden;
-      background: rgba(255,255,255,.82);
-      border: 1px solid rgba(24,33,43,.12);
-      box-shadow: 0 24px 70px rgba(24,33,43,.14);
-    }
-    .topline { height: 9px; background: linear-gradient(90deg, var(--blue), var(--coral)); }
-    .content { padding: clamp(30px, 7vw, 76px); }
-    .eyebrow {
-      margin: 0 0 22px;
-      color: var(--blue);
-      font: 700 13px/1.2 "Microsoft YaHei", sans-serif;
-      letter-spacing: .16em;
-    }
-    h1 {
-      max-width: 650px;
-      margin: 0;
-      font-size: clamp(36px, 7vw, 72px);
-      line-height: .98;
-      letter-spacing: .01em;
-    }
-    .rule { width: 88px; height: 4px; margin: 30px 0 24px; background: var(--coral); }
-    .description {
-      max-width: 570px;
-      margin: 0;
-      color: var(--muted);
-      font: 17px/1.8 "Microsoft YaHei", sans-serif;
-    }
-    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-    .picker { margin-top: 30px; }
-    .picker label { display: block; margin-bottom: 9px; color: var(--muted); font: 700 13px "Microsoft YaHei", sans-serif; }
-    .picker select { width: min(560px, 100%); min-height: 48px; padding: 0 14px; color: var(--ink); border: 1px solid rgba(23,105,170,.3); background: white; font: 15px "Microsoft YaHei", sans-serif; }
-    a, button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 24px;
-      text-decoration: none;
-      font: 700 15px "Microsoft YaHei", sans-serif;
-      cursor: pointer;
-      transition: transform .2s, box-shadow .2s, background .2s;
-    }
-    .primary { color: white; background: var(--blue); box-shadow: 0 9px 20px rgba(23,105,170,.22); }
-    .secondary { color: var(--blue-dark); border: 1px solid rgba(23,105,170,.3); }
-    button { border: 0; }
-    a:hover, button:hover { transform: translateY(-2px); }
-    .primary:hover { background: var(--blue-dark); box-shadow: 0 12px 25px rgba(23,105,170,.3); }
-    .random { color: var(--ink); background: #f2c94c; box-shadow: 0 9px 20px rgba(190,145,23,.2); }
-    .random:hover { background: #e8bb32; }
-    .result { min-height: 22px; margin: 15px 0 0; color: var(--blue-dark); font: 14px/1.6 "Microsoft YaHei", sans-serif; }
-    .meta { margin-top: 38px; color: #89929b; font: 12px/1.6 "Microsoft YaHei", sans-serif; }
-    @media (max-width: 500px) {
-      body { padding: 14px; }
-      .content { padding: 34px 25px 30px; }
-      .actions a { width: 100%; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>高中英语单词朗读 · 人教版七册课本</title>
+<meta name="description" content="人教版高中英语七册课本、三十六个单元的单词朗读视频索引：选一册、选一个单元，直接跳到 B 站对应分 P。">
+<meta name="theme-color" content="#18191b">
+<style>
+  :root{
+    --bg:#18191b;
+    --surface:#222427;
+    --ink:#eff0f1;
+    --muted:#9c9ea3;
+    --accent:#ff4a1f;
+    --accent-ink:#18191b;
+    --paper:#eff0f1;
+    --paper-2:#dfe0db;
+    --paper-3:#d3d4ce;
+    --paper-ink:#18191b;
+    --paper-muted:#5b5f64;
+    --pad:clamp(16px,2.2vw,32px);
+    --s-display:clamp(44px,7.4vw,107px);
+    --s-head:clamp(32px,4vw,56px);
+    --s-unit:24px;
+    --s-lead:20px;
+    --s-body:17px;
+    --s-small:13px;
+    --accent-deep:#c9330f;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:ui-sans-serif,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+    font-size:var(--s-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,p,ol,figure{margin:0}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  ol{list-style:none;padding:0}
+  ::selection{background:var(--accent);color:var(--accent-ink)}
+
+  a:focus-visible,button:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+
+  /* radios: the page's book state */
+  .book-radio{
+    position:absolute;
+    width:1px;height:1px; /* taste-skill-ignore: visually hidden radio, not a rule */
+    margin:-1px;padding:0;border:0;
+    clip-path:inset(50%);
+    overflow:hidden;
+    white-space:nowrap;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    display:grid;
+    grid-template-columns:minmax(0,42fr) minmax(0,58fr);
+    gap:var(--pad);
+    min-height:100svh;
+    padding:var(--pad);
+  }
+  .intro{
+    display:grid;
+    grid-template-rows:auto 1fr auto;
+    min-width:0;
+  }
+  .topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .brand{font-size:var(--s-small);font-weight:700;letter-spacing:.01em}
+  .nav{display:flex;gap:18px}
+  .nav a{font-size:var(--s-small);color:var(--muted);transition:color .2s}
+  .nav a:hover{color:var(--ink)}
+
+  .intro-body{align-self:center;padding:clamp(28px,5vw,64px) 0}
+  h1{
+    font-size:var(--s-display);
+    font-weight:800;
+    line-height:.92;
+    letter-spacing:-.045em;
+  }
+  .standfirst{
+    max-width:30ch;
+    margin-top:clamp(22px,3vw,34px);
+    color:var(--muted);
+    font-size:var(--s-lead);
+    line-height:1.6;
+    word-break:keep-all;
+  }
+  .cta{
+    display:inline-flex;align-items:center;gap:12px;
+    min-height:54px;
+    margin-top:clamp(26px,3.4vw,40px);
+    padding:0 26px;
+    background:var(--accent);
+    color:var(--accent-ink);
+    font-size:var(--s-body);font-weight:700;
+    transition:background .2s,transform .2s;
+  }
+  .cta:hover{background:#ff6a45;transform:translateY(-2px)}
+  .hero-note{margin-top:clamp(18px,2.2vw,26px);font-size:var(--s-small);color:var(--muted)}
+
+  .shelf{
+    display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    align-content:center;
+    gap:0;
+    min-width:0;
+  }
+  .shelf label{
+    display:block;
+    aspect-ratio:3/4;
+    overflow:hidden;
+    cursor:pointer;
+    background:var(--surface);
+  }
+  .shelf img{
+    width:100%;height:100%;
+    object-fit:cover;
+    filter:grayscale(1) contrast(1.04);
+    opacity:.62;
+    transition:filter .9s var(--ease),opacity .6s var(--ease),transform .9s var(--ease);
+  }
+  .shelf label:hover img{opacity:.9;transform:scale(1.015)}
+  .tile{
+    aspect-ratio:3/4;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    gap:2px;
+    padding:clamp(10px,1.4vw,20px);
+    background:var(--accent);
+    color:var(--accent-ink);
+  }
+  .tile b{font-size:clamp(26px,3.1vw,44px);font-weight:800;line-height:.9;letter-spacing:-.04em}
+  .tile span{font-size:var(--s-small);font-weight:700}
+
+  /* ---------- index ---------- */
+  .index{
+    background:var(--paper);
+    color:var(--paper-ink);
+    padding:clamp(64px,8vw,120px) var(--pad) clamp(72px,9vw,130px);
+  }
+  .index-head{max-width:56ch}
+  h2{
+    font-size:var(--s-head);
+    font-weight:800;
+    line-height:1;
+    letter-spacing:-.04em;
+  }
+  .index-note{
+    max-width:36ch;
+    margin-top:16px;
+    color:var(--paper-muted);
+    font-size:var(--s-body);
+  }
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:18px 32px;
+    margin-top:clamp(32px,4.5vw,52px);
+  }
+  .random{
+    display:inline-flex;align-items:center;gap:8px;
+    min-height:44px;
+    padding:0;
+    font-size:var(--s-body);font-weight:700;
+    text-decoration:underline;
+    text-decoration-thickness:2px;
+    text-underline-offset:5px;
+    transition:color .2s;
+  }
+  .random:hover{color:var(--accent-deep)}
+
+  .tabs{display:flex;flex-wrap:wrap;gap:6px}
+  .tab{
+    padding:12px 18px;
+    background:var(--paper-2);
+    color:var(--paper-ink);
+    font-size:var(--s-body);font-weight:700;
+    cursor:pointer;
+    transition:background .25s,color .25s;
+  }
+  .tab:hover{background:var(--paper-3)}
+
+  .spread{
+    display:grid;
+    grid-template-columns:minmax(0,34fr) minmax(0,66fr);
+    gap:clamp(28px,5vw,80px);
+    margin-top:clamp(28px,4vw,44px);
+    align-items:start;
+  }
+  .cover-stack{
+    position:relative;
+    aspect-ratio:3/4;
+    background:var(--paper-2);
+    max-width:460px;
+  }
+  .cover{
+    position:absolute;
+    inset:0;
+    width:100%;height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity .9s var(--ease);
+  }
+  .panel{display:none}
+  .panel-title{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:-.03em;
+    line-height:1.1;
+  }
+  .panel-meta{margin-top:8px;color:var(--paper-muted);font-size:var(--s-small);font-variant-numeric:tabular-nums}
+  .units{margin-top:clamp(18px,2.4vw,30px)}
+  .unit a{
+    display:grid;
+    grid-template-columns:1fr auto 22px;
+    grid-template-rows:auto auto;
+    column-gap:18px;
+    align-items:center;
+    padding:15px 14px;
+    margin:0 -14px;
+    transition:background .2s,color .2s;
+  }
+  .u-name{grid-column:1;grid-row:1;font-size:var(--s-unit);font-weight:700;letter-spacing:-.02em;line-height:1.2}
+  .u-theme{grid-column:1;grid-row:2;color:var(--paper-muted);font-size:var(--s-body);transition:color .2s}
+  .u-time{grid-column:2;grid-row:1/3;color:var(--paper-muted);font-size:var(--s-small);font-variant-numeric:tabular-nums;transition:color .2s}
+  .u-go{grid-column:3;grid-row:1/3;font-size:17px;text-align:right;transition:transform .2s}
+  .unit a:hover,.unit a:focus-visible{background:var(--accent);color:var(--accent-ink)}
+  .unit a:hover .u-theme,.unit a:hover .u-time,
+  .unit a:focus-visible .u-theme,.unit a:focus-visible .u-time{color:var(--accent-ink)}
+  .unit a:hover .u-go,.unit a:focus-visible .u-go{transform:translate(3px,-3px)}
+  .unit.hit a{background:var(--accent);color:var(--accent-ink)}
+  .unit.hit .u-theme,.unit.hit .u-time{color:var(--accent-ink)}
+
+  /* ---------- facts ---------- */
+  .facts{
+    background:var(--accent);
+    color:var(--accent-ink);
+    padding:clamp(64px,8vw,120px) var(--pad);
+  }
+  .facts-title{
+    font-size:var(--s-head);
+    font-weight:800;
+    line-height:1.14;
+    letter-spacing:-.03em;
+  }
+  .facts-row{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+    gap:clamp(32px,5vw,80px);
+    margin-top:clamp(36px,5vw,68px);
+    align-items:start;
+  }
+  .facts-lead{max-width:40ch;font-size:var(--s-body);line-height:1.65}
+  .facts-lead a{font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .stats{display:grid;grid-template-columns:repeat(3,auto);justify-content:space-between;gap:20px}
+  .stat{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 12px}
+  .stat b{font-size:clamp(40px,4vw,56px);font-weight:800;line-height:.95;letter-spacing:-.05em}
+  .stat span{font-size:var(--s-small);font-weight:700;opacity:.8}
+
+  /* ---------- footer ---------- */
+  .footer{
+    background:var(--bg);
+    color:var(--ink);
+    padding:clamp(56px,8vw,110px) var(--pad) calc(var(--pad) + 8px);
+  }
+  .footer-name{
+    font-size:clamp(34px,7.45vw,107px);
+    font-weight:800;
+    line-height:.95;
+    letter-spacing:-.05em;
+  }
+  .footer-links{display:flex;flex-direction:column;align-items:flex-start;gap:6px;margin-top:clamp(32px,4vw,56px)}
+  .footer-links a{
+    font-size:clamp(26px,2.2vw,32px);
+    font-weight:700;
+    letter-spacing:-.02em;
+    color:var(--muted);
+    transition:color .2s;
+  }
+  .footer-links a:hover{color:var(--ink)}
+  .footer-note{max-width:58ch;margin-top:clamp(40px,6vw,80px);color:var(--muted);font-size:var(--s-small)}
+
+  /* ---------- state: which book ---------- */
+  #book-1:checked ~ #index #panel-1,
+  #book-2:checked ~ #index #panel-2,
+  #book-3:checked ~ #index #panel-3,
+  #book-4:checked ~ #index #panel-4,
+  #book-5:checked ~ #index #panel-5,
+  #book-6:checked ~ #index #panel-6,
+  #book-7:checked ~ #index #panel-7{display:block}
+
+  #book-1:checked ~ #index .cover-1,
+  #book-2:checked ~ #index .cover-2,
+  #book-3:checked ~ #index .cover-3,
+  #book-4:checked ~ #index .cover-4,
+  #book-5:checked ~ #index .cover-5,
+  #book-6:checked ~ #index .cover-6,
+  #book-7:checked ~ #index .cover-7{opacity:1}
+
+  #book-1:checked ~ #index .tab-1,
+  #book-2:checked ~ #index .tab-2,
+  #book-3:checked ~ #index .tab-3,
+  #book-4:checked ~ #index .tab-4,
+  #book-5:checked ~ #index .tab-5,
+  #book-6:checked ~ #index .tab-6,
+  #book-7:checked ~ #index .tab-7{background:var(--accent);color:var(--accent-ink)}
+
+  #book-1:checked ~ .masthead .cell-1 img,
+  #book-2:checked ~ .masthead .cell-2 img,
+  #book-3:checked ~ .masthead .cell-3 img,
+  #book-4:checked ~ .masthead .cell-4 img,
+  #book-5:checked ~ .masthead .cell-5 img,
+  #book-6:checked ~ .masthead .cell-6 img,
+  #book-7:checked ~ .masthead .cell-7 img{filter:none;opacity:1;transform:scale(1.02)}
+
+  #book-1:focus-visible ~ #index .tab-1,
+  #book-2:focus-visible ~ #index .tab-2,
+  #book-3:focus-visible ~ #index .tab-3,
+  #book-4:focus-visible ~ #index .tab-4,
+  #book-5:focus-visible ~ #index .tab-5,
+  #book-6:focus-visible ~ #index .tab-6,
+  #book-7:focus-visible ~ #index .tab-7{outline:3px solid var(--accent-ink);outline-offset:3px}
+
+  #book-1:focus-visible ~ .masthead .cell-1 img,
+  #book-2:focus-visible ~ .masthead .cell-2 img,
+  #book-3:focus-visible ~ .masthead .cell-3 img,
+  #book-4:focus-visible ~ .masthead .cell-4 img,
+  #book-5:focus-visible ~ .masthead .cell-5 img,
+  #book-6:focus-visible ~ .masthead .cell-6 img,
+  #book-7:focus-visible ~ .masthead .cell-7 img{outline:3px solid var(--ink);outline-offset:3px}
+
+  .no-js .random{display:none}
+
+  /* ---------- motion ---------- */
+  @keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+  @media (prefers-reduced-motion:no-preference){
+    .js .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+    .js .reveal.in{opacity:1;transform:none}
+    .panel{animation:rise .55s var(--ease) both}
+    .unit{animation:rise .5s var(--ease) both;animation-delay:calc(var(--i) * 45ms)}
+  }
+
+  /* ---------- tablet / phone ---------- */
+  @media (max-width:1024px){
+    .masthead{grid-template-columns:1fr;min-height:0;gap:clamp(28px,4vw,48px)}
+    .intro{grid-template-rows:auto auto auto;gap:clamp(20px,3vw,32px)}
+    .intro-body{align-self:start;padding:0}
+    .shelf{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .spread{grid-template-columns:1fr;gap:clamp(24px,4vw,36px)}
+    .cover-stack{display:none}
+    .facts-row{grid-template-columns:1fr;gap:clamp(28px,4vw,40px)}
+  }
+  @media (max-width:700px){
+    h1{letter-spacing:-.04em}
+    .spread{margin-top:22px}
+    .tab{padding:11px 14px}
+    .stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}
+    .stat{display:block}
+    .stat:nth-child(3){grid-column:1/-1}
+    .stat b{font-size:26px;display:block}
+    .stat span{display:block;margin-top:6px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+</style>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 </head>
-<body>
-  <main class="panel">
-    <div class="topline"></div>
-    <section class="content">
-      <p class="eyebrow">ENGLISH · 必修一</p>
-      <h1>高中英语必修一<br>单词录音</h1>
-      <div class="rule"></div>
-      <p class="description">新人教版单词朗读视频。打开后即可开始跟读、复习和巩固重点词汇。</p>
-      <div class="picker">
-        <label for="wordVideoSelect">选择读单词视频</label>
-        <select id="wordVideoSelect" aria-label="选择读单词视频"></select>
+<body id="top">
+
+<input class="book-radio" type="radio" name="book" id="book-1" aria-label="必修一" checked>
+<input class="book-radio" type="radio" name="book" id="book-2" aria-label="必修二">
+<input class="book-radio" type="radio" name="book" id="book-3" aria-label="必修三">
+<input class="book-radio" type="radio" name="book" id="book-4" aria-label="选必一">
+<input class="book-radio" type="radio" name="book" id="book-5" aria-label="选必二">
+<input class="book-radio" type="radio" name="book" id="book-6" aria-label="选必三">
+<input class="book-radio" type="radio" name="book" id="book-7" aria-label="选必四">
+<script>
+  try{
+    var savedBook = localStorage.getItem('eng-words:book');
+    var savedInput = savedBook && document.getElementById(savedBook);
+    if (savedInput) savedInput.checked = true;
+  }catch(e){}
+</script>
+
+<header class="masthead">
+  <div class="intro">
+    <div class="topline">
+      <p class="brand">高中英语单词朗读</p>
+      <nav class="nav" aria-label="页面">
+        <a href="#index">目录</a>
+        <a href="#source">来源</a>
+      </nav>
+    </div>
+
+    <div class="intro-body">
+      <h1 class="reveal">高中英语<br>单词朗读</h1>
+      <p class="standfirst reveal" style="--d:90ms">人教版高中英语七册课本、三十六个单元的单词朗读视频，一个单元一段，点开就看。</p>
+      <a class="cta reveal" style="--d:180ms" href="#index">翻开目录 <span aria-hidden="true">↓</span></a>
+      <p class="hero-note">视频来自 B 站 @ABC英语社 · 共 3 小时 21 分</p>
+    </div>
+  </div>
+
+  <div class="shelf" role="group" aria-label="七册课本封面">
+    <label class="cell cell-1 reveal" style="--d:60ms" for="book-1"><img src="assets/cover-1.webp" alt="必修一课本封面"></label>
+    <label class="cell cell-2 reveal" style="--d:100ms" for="book-2"><img src="assets/cover-2.webp" alt="必修二课本封面"></label>
+    <label class="cell cell-3 reveal" style="--d:140ms" for="book-3"><img src="assets/cover-3.webp" alt="必修三课本封面"></label>
+    <label class="cell cell-4 reveal" style="--d:180ms" for="book-4"><img src="assets/cover-4.webp" alt="选择性必修一课本封面"></label>
+    <label class="cell cell-5 reveal" style="--d:220ms" for="book-5"><img src="assets/cover-5.webp" alt="选择性必修二课本封面"></label>
+    <label class="cell cell-6 reveal" style="--d:260ms" for="book-6"><img src="assets/cover-6.webp" alt="选择性必修三课本封面"></label>
+    <label class="cell cell-7 reveal" style="--d:300ms" for="book-7"><img src="assets/cover-7.webp" alt="选择性必修四课本封面"></label>
+    <div class="tile reveal" style="--d:340ms"><b>36</b><span>个单元</span></div>
+  </div>
+</header>
+
+<main id="index">
+  <section class="index">
+    <div class="index-head">
+      <h2 class="reveal">目录</h2>
+      <p class="index-note reveal" style="--d:80ms">按册翻开，选一个单元；每行的时长是该段视频的实际长度。</p>
+    </div>
+
+    <div class="controls">
+      <div class="tabs">
+        <label class="tab tab-1" for="book-1">必修一</label>
+        <label class="tab tab-2" for="book-2">必修二</label>
+        <label class="tab tab-3" for="book-3">必修三</label>
+        <label class="tab tab-4" for="book-4">选必一</label>
+        <label class="tab tab-5" for="book-5">选必二</label>
+        <label class="tab tab-6" for="book-6">选必三</label>
+        <label class="tab tab-7" for="book-7">选必四</label>
       </div>
-      <div class="actions">
-        <a class="primary" href="https://www.bilibili.com/video/BV1Ns4y1R7f2/" target="_blank" rel="noopener">立即观看视频 ↗</a>
-        <a class="secondary" href="https://www.bilibili.com/video/BV1Ns4y1R7f2/" target="_blank" rel="noopener">在浏览器中打开</a>
-        <button class="secondary" id="playSelected" type="button">播放所选视频 ↗</button>
-        <button class="random" id="randomUnit" type="button">随机播放一个单元 ↗</button>
+      <button class="random reveal" style="--d:140ms" id="random" type="button">随机抽一个单元 <span aria-hidden="true">↗</span></button>
+    </div>
+
+    <div class="spread">
+      <figure class="cover-stack" aria-hidden="true">
+        <img class="cover cover-1" src="assets/cover-1.webp" alt="">
+        <img class="cover cover-2" src="assets/cover-2.webp" alt="" loading="lazy">
+        <img class="cover cover-3" src="assets/cover-3.webp" alt="" loading="lazy">
+        <img class="cover cover-4" src="assets/cover-4.webp" alt="" loading="lazy">
+        <img class="cover cover-5" src="assets/cover-5.webp" alt="" loading="lazy">
+        <img class="cover cover-6" src="assets/cover-6.webp" alt="" loading="lazy">
+        <img class="cover cover-7" src="assets/cover-7.webp" alt="" loading="lazy">
+      </figure>
+
+      <div class="panels">
+        <div class="panel panel-1" id="panel-1">
+          <h3 class="panel-title">必修 第一册</h3>
+          <p class="panel-meta">6 个单元 · 28 分 38 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=1" target="_blank" rel="noopener"><span class="u-name">Welcome Unit</span><span class="u-theme">开篇单元</span><span class="u-time">4:25</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Teenage Life</span><span class="u-time">4:16</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Travelling Around</span><span class="u-time">5:23</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Sports and Fitness</span><span class="u-time">4:29</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Natural Disasters</span><span class="u-time">5:42</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:5"><a href="https://www.bilibili.com/video/BV1Ns4y1R7f2/?p=6" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">Languages Around the World</span><span class="u-time">4:23</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-2" id="panel-2">
+          <h3 class="panel-title">必修 第二册</h3>
+          <p class="panel-meta">5 个单元 · 28 分 16 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV19Y411D7Zi/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Cultural Heritage</span><span class="u-time">6:47</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV19Y411D7Zi/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Wildlife Protection</span><span class="u-time">6:03</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV19Y411D7Zi/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">The Internet</span><span class="u-time">4:39</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV19Y411D7Zi/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">History and Traditions</span><span class="u-time">5:18</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV19Y411D7Zi/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">Music</span><span class="u-time">5:29</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-3" id="panel-3">
+          <h3 class="panel-title">必修 第三册</h3>
+          <p class="panel-meta">5 个单元 · 33 分 42 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1Wd4y1L7YX/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Festivals and Celebrations</span><span class="u-time">7:37</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1Wd4y1L7YX/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Morals and Virtues</span><span class="u-time">7:19</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1Wd4y1L7YX/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Diverse Cultures</span><span class="u-time">5:56</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1Wd4y1L7YX/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Space Exploration</span><span class="u-time">7:10</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1Wd4y1L7YX/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">The Value of Money</span><span class="u-time">5:40</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-4" id="panel-4">
+          <h3 class="panel-title">选择性必修 第一册</h3>
+          <p class="panel-meta">5 个单元 · 27 分 40 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1Cm4y1m7zT/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">People of Achievement</span><span class="u-time">6:09</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1Cm4y1m7zT/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Looking into the Future</span><span class="u-time">5:40</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1Cm4y1m7zT/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Fascinating Parks</span><span class="u-time">5:27</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1Cm4y1m7zT/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Body Language</span><span class="u-time">5:15</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1Cm4y1m7zT/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">Working the Land</span><span class="u-time">5:09</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-5" id="panel-5">
+          <h3 class="panel-title">选择性必修 第二册</h3>
+          <p class="panel-meta">5 个单元 · 28 分 26 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1pA411R7Fk/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Science and Scientists</span><span class="u-time">6:11</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1pA411R7Fk/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Bridging Cultures</span><span class="u-time">5:39</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1pA411R7Fk/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Food and Culture</span><span class="u-time">5:01</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1pA411R7Fk/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Journey Across a Vast Land</span><span class="u-time">5:36</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1pA411R7Fk/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">First Aid</span><span class="u-time">5:59</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-6" id="panel-6">
+          <h3 class="panel-title">选择性必修 第三册</h3>
+          <p class="panel-meta">5 个单元 · 27 分 20 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1Fo4y1x7fZ/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Art</span><span class="u-time">6:44</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1Fo4y1x7fZ/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Healthy Lifestyle</span><span class="u-time">4:17</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1Fo4y1x7fZ/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Environmental Protection</span><span class="u-time">4:46</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1Fo4y1x7fZ/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Adversity and Courage</span><span class="u-time">5:32</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1Fo4y1x7fZ/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">Poems</span><span class="u-time">6:01</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
+
+        <div class="panel panel-7" id="panel-7">
+          <h3 class="panel-title">选择性必修 第四册</h3>
+          <p class="panel-meta">5 个单元 · 26 分 50 秒</p>
+          <ol class="units">
+            <li class="unit" style="--i:0"><a href="https://www.bilibili.com/video/BV1bW4y1379F/?p=1" target="_blank" rel="noopener"><span class="u-name">Unit 1</span><span class="u-theme">Science Fiction</span><span class="u-time">6:07</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:1"><a href="https://www.bilibili.com/video/BV1bW4y1379F/?p=2" target="_blank" rel="noopener"><span class="u-name">Unit 2</span><span class="u-theme">Iconic Attractions</span><span class="u-time">6:09</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:2"><a href="https://www.bilibili.com/video/BV1bW4y1379F/?p=3" target="_blank" rel="noopener"><span class="u-name">Unit 3</span><span class="u-theme">Sea Exploration</span><span class="u-time">4:07</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:3"><a href="https://www.bilibili.com/video/BV1bW4y1379F/?p=4" target="_blank" rel="noopener"><span class="u-name">Unit 4</span><span class="u-theme">Sharing</span><span class="u-time">4:59</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+            <li class="unit" style="--i:4"><a href="https://www.bilibili.com/video/BV1bW4y1379F/?p=5" target="_blank" rel="noopener"><span class="u-name">Unit 5</span><span class="u-theme">Launching Your Career</span><span class="u-time">5:28</span><span class="u-go" aria-hidden="true">↗</span></a></li>
+          </ol>
+        </div>
       </div>
-      <p class="result" id="randomResult" aria-live="polite"></p>
-      <p class="meta">哔哩哔哩 · BV1Ns4y1R7f2</p>
-    </section>
-  </main>
-  <script>
-    const randomUnit = document.querySelector("#randomUnit");
-    const playSelected = document.querySelector("#playSelected");
-    const wordVideoSelect = document.querySelector("#wordVideoSelect");
-    const randomResult = document.querySelector("#randomResult");
-    const books = [
-      { name: "必修一", bvid: "BV1Ns4y1R7f2", units: 6 },
-      { name: "必修二", bvid: "BV19Y411D7Zi", units: 5 },
-      { name: "必修三", bvid: "BV1Wd4y1L7YX", units: 5 },
-      { name: "选择性必修一", bvid: "BV1Cm4y1m7zT", units: 5 },
-      { name: "选择性必修二", bvid: "BV1pA411R7Fk", units: 5 },
-      { name: "选择性必修三", bvid: "BV1Fo4y1x7fZ", units: 5 },
-      { name: "选择性必修四", bvid: "BV1bW4y1379F", units: 5 }
-    ];
+    </div>
+  </section>
 
-    const wordVideos = books.flatMap((book) => Array.from({ length: book.units }, (_, index) => ({
-      name: `${book.name} Unit${index + 1}`,
-      bvid: book.bvid,
-      part: index + 1
-    })));
+  <section class="facts" id="source">
+    <h2 class="facts-title reveal">三十六段视频，全部来自一位 UP 主。</h2>
+    <div class="facts-row">
+      <p class="facts-lead reveal" style="--d:80ms">视频由 B 站 UP 主 <a href="https://space.bilibili.com/543846778" target="_blank" rel="noopener">ABC英语社</a> 制作，每册一条多 P 视频，一个单元一 P；上面的链接直接跳到对应分 P，不经过中转页。</p>
+      <div class="stats">
+        <p class="stat reveal" style="--d:140ms"><b>7</b><span>册课本</span></p>
+        <p class="stat reveal" style="--d:200ms"><b>36</b><span>个单元</span></p>
+        <p class="stat reveal" style="--d:260ms"><b>3 小时 21 分</b><span>视频总时长</span></p>
+      </div>
+    </div>
+  </section>
+</main>
 
-    wordVideos.forEach((video, index) => {
-      const option = document.createElement("option");
-      option.value = String(index);
-      option.textContent = `${String(index + 1).padStart(2, "0")} · ${video.name}`;
-      wordVideoSelect.appendChild(option);
+<footer class="footer">
+  <h2 class="footer-name">高中英语单词朗读</h2>
+  <nav class="footer-links" aria-label="相关链接">
+    <a href="https://space.bilibili.com/543846778" target="_blank" rel="noopener">B 站 @ABC英语社 ↗</a>
+    <a href="https://github.com/han-yi794/English-words" target="_blank" rel="noopener">GitHub 仓库 ↗</a>
+    <a href="#top">回到顶部 ↑</a>
+  </nav>
+  <p class="footer-note">视频与封面版权归原作者与人民教育出版社所有，本页只做索引，与出版社无关。单元标题取自人教版 2019 版教材目录。</p>
+</footer>
+
+<script>
+(function(){
+  var STORE = 'eng-words:book';
+  var index = document.getElementById('index');
+  var random = document.getElementById('random');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('input[name="book"]').forEach(function(input){
+    input.addEventListener('change', function(){
+      try{ localStorage.setItem(STORE, input.id); }catch(e){}
     });
+  });
 
-    function openWordVideo(video) {
-      const targetUrl = `https://www.bilibili.com/video/${video.bvid}/?p=${video.part}`;
-      randomResult.textContent = `正在打开${video.name}...`;
-      const videoLink = document.createElement("a");
-      videoLink.href = targetUrl;
-      videoLink.target = "_blank";
-      videoLink.rel = "noopener";
-      videoLink.click();
-      window.setTimeout(() => {
-        if (!document.hidden) {
-          window.location.assign(targetUrl);
-        }
-      }, 150);
-    }
-
-    playSelected.addEventListener("click", () => {
-      openWordVideo(wordVideos[Number(wordVideoSelect.value)]);
+  document.querySelectorAll('.shelf label').forEach(function(label){
+    label.addEventListener('click', function(){
+      index.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     });
+  });
 
-    randomUnit.addEventListener("click", () => {
-      const randomIndex = Math.floor(Math.random() * wordVideos.length);
-      wordVideoSelect.value = String(randomIndex);
-      openWordVideo(wordVideos[randomIndex]);
+  if (random) {
+    random.addEventListener('click', function(){
+      var links = Array.prototype.slice.call(document.querySelectorAll('.unit a'));
+      var pick = links[Math.floor(Math.random() * links.length)];
+      window.open(pick.href, '_blank', 'noopener');
+      var panel = pick.closest('.panel');
+      var input = panel && document.getElementById('book-' + panel.id.replace('panel-', ''));
+      if (input) {
+        input.checked = true;
+        try{ localStorage.setItem(STORE, input.id); }catch(e){}
+      }
+      var row = pick.closest('.unit');
+      if (row) {
+        row.classList.add('hit');
+        window.setTimeout(function(){ row.classList.remove('hit'); }, 1800);
+      }
     });
-  </script>
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  reveals.forEach(function(el){ io.observe(el); });
+
+  // Fast wheel/trackpad jumps and anchor jumps can pass an element between observer
+  // callbacks; reveal anything at or above the fold so a section never stays blank.
+  var revealPassed = function(){
+    reveals.forEach(function(el){
+      if (!el.classList.contains('in') && el.getBoundingClientRect().top < window.innerHeight) {
+        el.classList.add('in');
+        io.unobserve(el);
+      }
+    });
+  };
+  window.addEventListener('scroll', revealPassed, { passive: true });
+  window.addEventListener('resize', revealPassed);
+  revealPassed();
+})();
+</script>
 </body>
 </html>
