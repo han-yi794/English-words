@@ -55,7 +55,10 @@
 
   /* radios: the page's book state */
   .book-radio{
-    position:absolute;
+    /* Pin the radio to the viewport: clicking a tab label focuses it, and an absolutely
+       positioned radio at the top of the document would scroll the page back up there. */
+    position:fixed;
+    top:0;left:0;
     width:1px;height:1px; /* taste-skill-ignore: visually hidden radio, not a rule */
     margin:-1px;padding:0;border:0;
     clip-path:inset(50%);
